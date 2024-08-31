@@ -89,7 +89,7 @@ contract StakingEther {
         return users[msg.sender].amount;
     }
 
-    function myBalance1() external view returns (uint, uint) {
+    function myBalanceAndReward() external view returns (uint, uint) {
     Users memory user = users[msg.sender];
     uint reward = calculateReward(msg.sender);
     return (user.amount, reward);

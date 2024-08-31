@@ -74,7 +74,7 @@ contract StakingEther {
         Users memory user = users[_user];
 
         uint256 duration = block.timestamp - user.duration;
-        // Example reward calculation: 10% annualized interest
+        // 10% annualized interest
 
         uint256 reward = (user.amount * duration * 10) / (365 * 1440 * 100);
 

@@ -118,6 +118,22 @@ describe ("StakeERC20", function(){
       await token.connect(account).approve(stakeERC20, ethers.parseUnits("100", 18));
 
       const stakeAmount = ethers.parseUnits("50", 18)
+      await stakeERC20.connect(account).stakingERC20(stakeAmount, 60)
+    
+        
+    })
+
+    it("Should emit  StakeSuccessful", async function () {
+      const { stakeERC20, token, account } = await loadFixture(deployStakeERC20Fixture);
+
+      
+      const amount = ethers.parseUnits("100", 18);
+      await token.transfer(account, amount);
+
+
+      await token.connect(account).approve(stakeERC20, ethers.parseUnits("100", 18));
+
+      const stakeAmount = ethers.parseUnits("50", 18)
       await expect(stakeERC20.connect(account).stakingERC20(stakeAmount, 60))
       .to.emit(stakeERC20, "StakeSuccessful")
       .withArgs(account, stakeAmount, 60)

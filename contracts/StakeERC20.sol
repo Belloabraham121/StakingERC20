@@ -4,8 +4,8 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract StakeERC20 {
-    address owner;
-    address tokenAddress;
+    address public owner;
+    address public tokenAddress;
     mapping(address => uint256) balances;
 
     struct Users {
@@ -116,5 +116,8 @@ contract StakeERC20 {
 
     function getContractBalance() external view returns (uint256) {
         return IERC20(tokenAddress).balanceOf(address(this));
+    }
+    function testZeroAddressCheck() public view {
+        require(msg.sender != address(0), "address zero found");
     }
 }

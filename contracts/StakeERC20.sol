@@ -106,16 +106,12 @@ contract StakeERC20 {
         return reward;
     }
 
-    function myBalance() external view returns (uint256) {
-        return balances[msg.sender];
-    }
-
-    function getAnyBalance(address _user) external view returns (uint256) {
+    function myBalance(address _user) external view returns (uint256) {
         return balances[_user];
     }
 
-    function getContractBalance() external view returns (uint256) {
-        return IERC20(tokenAddress).balanceOf(address(this));
+    function getContractBalance(address _tokenAddress) external view returns (uint256) {
+        return IERC20(_tokenAddress).balanceOf(address(this));
     }
     function testZeroAddressCheck() public view {
         require(msg.sender != address(0), "address zero found");

@@ -142,6 +142,77 @@ describe ("StakeERC20", function(){
   });
   })
 
+  describe("Withdraw Stake", function () {
+    
+    it("Should return user balance", async function () {
+      const { stakeERC20, token, account } = await loadFixture(deployStakeERC20Fixture);
 
+      
+      const amount = ethers.parseUnits("100", 18);
+      await token.transfer(account, amount);
+
+
+      await token.connect(account).approve(stakeERC20, ethers.parseUnits("100", 18));
+
+      const stakeAmount = ethers.parseUnits("50", 18)
+      await expect(stakeERC20.connect(account).stakingERC20(stakeAmount, 60))
+      await stakeERC20.connect(account).myBalance(account)
+        
+    })
+
+    it("Should return contract balance", async function () {
+      const { stakeERC20, token, account } = await loadFixture(deployStakeERC20Fixture);
+
+      
+      const amount = ethers.parseUnits("100", 18);
+      await token.transfer(account, amount);
+
+
+      await token.connect(account).approve(stakeERC20, ethers.parseUnits("100", 18));
+
+      const stakeAmount = ethers.parseUnits("50", 18)
+      await expect(stakeERC20.connect(account).stakingERC20(stakeAmount, 60))
+      await stakeERC20.connect(account).getContractBalance(token);
+        
+    })
+    
+  })
+
+
+  describe("Balance", function () {
+    
+    it("Should return user balance", async function () {
+      const { stakeERC20, token, account } = await loadFixture(deployStakeERC20Fixture);
+
+      
+      const amount = ethers.parseUnits("100", 18);
+      await token.transfer(account, amount);
+
+
+      await token.connect(account).approve(stakeERC20, ethers.parseUnits("100", 18));
+
+      const stakeAmount = ethers.parseUnits("50", 18)
+      await expect(stakeERC20.connect(account).stakingERC20(stakeAmount, 60))
+      await stakeERC20.connect(account).myBalance(account)
+        
+    })
+
+    it("Should return contract balance", async function () {
+      const { stakeERC20, token, account } = await loadFixture(deployStakeERC20Fixture);
+
+      
+      const amount = ethers.parseUnits("100", 18);
+      await token.transfer(account, amount);
+
+
+      await token.connect(account).approve(stakeERC20, ethers.parseUnits("100", 18));
+
+      const stakeAmount = ethers.parseUnits("50", 18)
+      await expect(stakeERC20.connect(account).stakingERC20(stakeAmount, 60))
+      await stakeERC20.connect(account).getContractBalance(token);
+        
+    })
+    
+  })
   
 })
